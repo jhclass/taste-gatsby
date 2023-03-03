@@ -1,15 +1,25 @@
 import React  from 'react';
-import { Link } from 'gatsby';
-import { HeadFC } from 'gatsby';
+import { graphql, Link } from 'gatsby';
+import { HeadFC,useStaticQuery } from 'gatsby';
 interface ILayout {
     children : any,
     title:string,
 }
 export const Head: HeadFC = () => <title>aaaaa</title>
 export default function Layout({children,title}:ILayout){
+    const data = useStaticQuery<Queries.seoDataQuery>(graphql`
+query seoData {
+  site{
+    siteMetadata{
+      title
+    }
+  }
+}
+`);
+console.log(data);
     return (
         <div>
-            <h1>로고</h1>
+            <h1>로고 : {data.site?.siteMetadata?.title}</h1>
             <nav>
                 <ul>
                     <li><Link to="/">Home</Link></li>
