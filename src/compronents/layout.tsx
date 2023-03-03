@@ -1,9 +1,11 @@
 import React  from 'react';
 import { Link } from 'gatsby';
+import { HeadFC } from 'gatsby';
 interface ILayout {
     children : any,
     title:string,
 }
+export const Head: HeadFC = () => <title>aaaaa</title>
 export default function Layout({children,title}:ILayout){
     return (
         <div>

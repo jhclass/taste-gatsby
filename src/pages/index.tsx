@@ -140,11 +140,9 @@ const links = [
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout title="Welcome">
-       
     </Layout>
-  
   )
 }
-
-export default IndexPage
 export const Head: HeadFC = () => <title>welcome</title>
+export default IndexPage
+
