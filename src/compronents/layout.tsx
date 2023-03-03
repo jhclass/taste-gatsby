@@ -16,7 +16,7 @@ query seoData {
   }
 }
 `);
-console.log(data);
+//console.log(data);
     return (
         <div>
             <h1>로고 : {data.site?.siteMetadata?.title}</h1>
@@ -34,3 +34,5 @@ console.log(data);
         
     )
 }
+
+
