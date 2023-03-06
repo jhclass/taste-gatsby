@@ -9,7 +9,7 @@ function Blog({data}:PageProps<Queries.MyDataQuery>) {
             <p>The most recent news from my Blog</p>
             <ul>
                 {data.allMdx.nodes.map((datas,i) =><li key={i}>
-                    <h2><Link to={`/blog/${datas.frontmatter?.title}`}>{datas.frontmatter?.title}</Link></h2>
+                    <h2><Link to={`/blog/${datas.frontmatter?.slug}`}>{datas.frontmatter?.title}</Link></h2>
                     <div>
                         카테고리: {datas.frontmatter?.category}
                         <br/>
@@ -17,7 +17,7 @@ function Blog({data}:PageProps<Queries.MyDataQuery>) {
                         <br/>
                         작성일: {datas.frontmatter?.date}
                     </div>
-                    <p>{datas.excerpt}</p>
+                    <p>{datas.excerpt}<span><Link to={`/blog/${datas.frontmatter?.slug}`}>[자세히보기]</Link></span></p>
                 </li>)}
             </ul>
            
@@ -30,7 +30,7 @@ export const query = graphql`
     query MyData {
         allMdx {
             nodes {
-            excerpt(pruneLength: 100)
+            excerpt(pruneLength: 50)
             frontmatter {
                 title
                 category
