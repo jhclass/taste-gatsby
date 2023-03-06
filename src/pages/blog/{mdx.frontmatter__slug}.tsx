@@ -1,20 +1,24 @@
 import React from 'react';
 import Layout from "../../compronents/layout";
-import {graphql,PageProps} from "gatsby";
-export default function BlogPost({data}:PageProps<Queries.PostDetailQuery>){
-    console.log(data);
+import {graphql,PageProps, HeadFC} from "gatsby";
+interface IBlogPostProps{
+  data:Queries.PostDetailQuery,
+  children:any
+}
+export default function BlogPost({data,children}:IBlogPostProps){
+    console.log('children',children);
     return(
         <Layout title="Blog Post">
             <div>
-              <h2>{data.mdx?.frontmatter?.title}</h2>
+              <h2>Title. {data.mdx?.frontmatter?.title}</h2>
               <div>
-                <span>{data.mdx?.frontmatter?.category}</span>
-                <span>{data.mdx?.frontmatter?.author}</span>
-                <span>{data.mdx?.frontmatter?.date}</span>
+                Category. <span>{data.mdx?.frontmatter?.category}</span><br/>
+                Writer. <span>{data.mdx?.frontmatter?.author}</span><br/>
+                Date. <span>{data.mdx?.frontmatter?.date}</span><br/>
               </div>
               <hr/>
               <div style={{marginBottom:"20px"}}>
-                {data.mdx?.excerpt}
+                Detail. {children}
               </div>
             </div>
         </Layout>
@@ -40,3 +44,5 @@ query PostDetail($frontmatter__slug:String) {
   }
 
 `;
+
+export const Head = ({data}:IBlogPostProps) => <title>{data.mdx?.frontmatter?.title} | Blog</title>
