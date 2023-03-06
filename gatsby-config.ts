@@ -16,7 +16,10 @@ const config: GatsbyConfig = {
       options: {
         path:`${__dirname}/blog-posts`
       }
-    }
+    },
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`, // Needed for dynamic images
   ],
 }
 

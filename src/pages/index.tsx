@@ -1,6 +1,7 @@
 import * as React from "react"
 import { graphql, HeadFC, Link, PageProps, useStaticQuery } from "gatsby"
 import Layout from "../compronents/layout"
+import { StaticImage } from "gatsby-plugin-image"
 
 const pageStyles = {
   color: "#232129",
@@ -140,6 +141,7 @@ const links = [
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout title="Welcome">
+      <StaticImage src="https://images.unsplash.com/photo-1677835500542-50bd76a26bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80" alt="models1"/>
     </Layout>
   )
 }
