@@ -9,7 +9,13 @@ function Blog({data}:PageProps<Queries.MyDataQuery>) {
             <p>The most recent news from my Blog</p>
             <ul>
                 {data.allMdx.nodes.map((datas,i) =><li key={i}>
-                    <h3>{datas.excerpt}</h3>
+                    <h2>{datas.frontmatter?.title}</h2>
+                    <div>
+                        카테고리: {datas.frontmatter?.category}
+                        <br/>
+                        작성자: {datas.frontmatter?.author}
+                    </div>
+                    <p>{datas.excerpt}</p>
                 </li>)}
             </ul>
            
@@ -22,8 +28,13 @@ export const query = graphql`
     query MyData {
         allMdx {
             nodes {
-            excerpt(pruneLength: 15)
-            frontmatter
+            excerpt(pruneLength: 100)
+            frontmatter {
+                title
+                category
+                date
+                author
+            }
             body
             }
         }
