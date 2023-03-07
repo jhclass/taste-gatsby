@@ -2,6 +2,7 @@ import * as React from "react"
 import { graphql, HeadFC, Link, PageProps, useStaticQuery, } from "gatsby"
 import Layout from "../compronents/layout"
 import { StaticImage,GatsbyImage,getImage  } from "gatsby-plugin-image"
+//와 믿에 이거 두개 자동완성되는데 이것떄문에 계속 에러떴었네... ㅋㅋㅋㅋㅋㅋ !
 //import { GatsbyImage } from "gatsby-plugin-image/dist/src/components/gatsby-image.browser"
 //import { getImage } from "gatsby-plugin-image/dist/src/components/hooks"
 
@@ -144,7 +145,14 @@ const IndexPage = ({data}:PageProps<Queries.ProductsQuery>) => {
   console.log(data)
   return (
     <Layout title="Welcome">
-      {data.allContentfulJhclass.nodes.map((product,i)=><div key={i}>{product.name}<br/><GatsbyImage image={getImage(product.preview?.gatsbyImageData!)!} alt={product.name!}/></div>)}
+      {data.allContentfulJhclass.nodes.map((product,i)=>
+      (<Link to={`/products/`+product.id+''}><div key={i}>
+        <GatsbyImage 
+          image={getImage(product.preview?.gatsbyImageData!)!} 
+          alt={product.name!}/>
+          <h2>{product.name}</h2>
+          <h3>{product.price}won</h3>
+      </div></Link>))}
     </Layout>
   )
 }
@@ -153,10 +161,11 @@ export const query= graphql`
 query Products {
   allContentfulJhclass {
     nodes {
+      id
       price
       name
       preview {
-        gatsbyImageData(placeholder:BLURRED)
+        gatsbyImageData(height:600 placeholder:BLURRED)
       }
     }
   }
