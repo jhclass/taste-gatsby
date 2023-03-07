@@ -1,7 +1,9 @@
 import * as React from "react"
-import { graphql, HeadFC, Link, PageProps, useStaticQuery } from "gatsby"
+import { graphql, HeadFC, Link, PageProps, useStaticQuery, } from "gatsby"
 import Layout from "../compronents/layout"
-import { StaticImage } from "gatsby-plugin-image"
+import { StaticImage,GatsbyImage,getImage  } from "gatsby-plugin-image"
+//import { GatsbyImage } from "gatsby-plugin-image/dist/src/components/gatsby-image.browser"
+//import { getImage } from "gatsby-plugin-image/dist/src/components/hooks"
 
 const pageStyles = {
   color: "#232129",
@@ -138,13 +140,29 @@ const links = [
   },
 ]
 
-const IndexPage: React.FC<PageProps> = () => {
+const IndexPage = ({data}:PageProps<Queries.ProductsQuery>) => {
+  console.log(data)
   return (
     <Layout title="Welcome">
-      <StaticImage src="https://images.unsplash.com/photo-1677835500542-50bd76a26bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80" alt="models1"/>
+      {data.allContentfulJhclass.nodes.map((product,i)=><div key={i}>{product.name}<br/><GatsbyImage image={getImage(product.preview?.gatsbyImageData!)!} alt={product.name!}/></div>)}
     </Layout>
   )
 }
+
+export const query= graphql`
+query Products {
+  allContentfulJhclass {
+    nodes {
+      price
+      name
+      preview {
+        gatsbyImageData(placeholder:BLURRED)
+      }
+    }
+  }
+}
+`;
+
 // const data = useStaticQuery(graphql`
 // query seoQuery {
 //   site{
