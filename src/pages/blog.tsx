@@ -7,8 +7,8 @@ function Blog({data}:PageProps<Queries.MyDataQuery>) {
     return (
         <Layout title="Blog">
             <p>The most recent news from my Blog</p>
-            <ul>
-                {data.allMdx.nodes.map((datas,i) =><li key={i}>
+            <div className='grid'>
+                {data.allMdx.nodes.map((datas,i) =><article key={i}>
                     <h2><Link to={`/blog/${datas.frontmatter?.slug}`}>{datas.frontmatter?.title}</Link></h2>
                     <div>
                         카테고리: {datas.frontmatter?.category}
@@ -18,8 +18,8 @@ function Blog({data}:PageProps<Queries.MyDataQuery>) {
                         작성일: {datas.frontmatter?.date}
                     </div>
                     <p>{datas.excerpt}<span><Link to={`/blog/${datas.frontmatter?.slug}`}>[자세히보기]</Link></span></p>
-                </li>)}
-            </ul>
+                </article>)}
+            </div>
            
         </Layout>
        

@@ -18,7 +18,7 @@ query seoData {
 `);
 //console.log(data);
     return (
-        <div>
+        <div className='container'>
             <h1>로고 : {data.site?.siteMetadata?.title}</h1>
             <nav>
                 <ul>

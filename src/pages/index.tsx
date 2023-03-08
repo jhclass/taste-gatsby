@@ -146,13 +146,13 @@ const IndexPage = ({data}:PageProps<Queries.ProductsQuery>) => {
   return (
     <Layout title="Welcome">
       {data.allContentfulJhclass.nodes.map((product,i)=>
-      (<Link to={`/products/`+product.id+''}><div key={i}>
+      (<Link to={`/products/`+product.id+''} key={i}><article>
         <GatsbyImage 
           image={getImage(product.preview?.gatsbyImageData!)!} 
           alt={product.name!}/>
           <h2>{product.name}</h2>
           <h3>{product.price}won</h3>
-      </div></Link>))}
+      </article></Link>))}
     </Layout>
   )
 }

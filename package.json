@@ -17,9 +17,11 @@
   },
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
+    "@picocss/pico": "^1.5.7",
     "dotenv": "^16.0.3",
     "gatsby": "^5.7.0",
     "gatsby-plugin-image": "^3.7.0",
+    "gatsby-plugin-import": "^2.1.7",
     "gatsby-plugin-mdx": "^5.7.0",
     "gatsby-plugin-sharp": "^5.7.0",
     "gatsby-source-contentful": "^8.7.0",
